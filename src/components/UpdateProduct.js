@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
 import { NavLink, useParams, useNavigate } from 'react-router-dom';
+import { tokenStatus } from '../Redux/authSlice';
 
 export default function InsertProduct() {
+    const tokenFromRedux = useSelector(tokenStatus)
     const [productName, setProductName] = useState("");
     const [productPrice, setProductPrice] = useState();
     const [productBarcode, setProductBarcode] = useState();
@@ -30,7 +33,8 @@ export default function InsertProduct() {
                 const res = await fetch(`https://product-management-backend-nxpo.onrender.com/products/${id}`, {
                     method: "GET",
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${tokenFromRedux}`
                     }
                 });
 
@@ -50,7 +54,7 @@ export default function InsertProduct() {
         };
 
         getProduct();
-    }, [id]);
+    }, [id,tokenFromRedux]);
 
     const updateProduct = async (e) => {
         e.preventDefault();
@@ -67,7 +71,8 @@ export default function InsertProduct() {
             const response = await fetch(`https://product-management-backend-nxpo.onrender.com/updateproduct/${id}`, {
                 method: "PUT",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${tokenFromRedux}`
                 },
                 body: JSON.stringify({ "ProductName": productName, "ProductPrice": productPrice, "ProductBarcode": productBarcode })
             });
@@ -105,8 +110,8 @@ export default function InsertProduct() {
                 <input type="number" onChange={setBarcode} value={productBarcode} maxLength={12} className="form-control fs-5" id="product_barcode" placeholder="Enter Product Barcode" required />
             </div>
             <div className='d-flex justify-content-center col-lg-6 col-md-6'>
-                <NavLink to="/" className='btn btn-primary me-5 fs-4'>Cancel</NavLink>
-                <button type="submit" onClick={updateProduct} className="btn btn-primary fs-4" disabled={loading}>{loading ? 'Updating...' : 'Update'}</button>
+                <NavLink to="/" style={{backgroundColor:"#68E8CE"}}  className='btn  me-5 fs-4'>Cancel</NavLink>
+                <button type="submit" onClick={updateProduct} style={{backgroundColor:"#68E8CE"}} className="btn fs-4" disabled={loading}>{loading ? 'Updating...' : 'Update'}</button>
             </div>
             <div className="col text-center col-lg-6 ">
                 {error && <div className="text-danger mt-3 fs-5 fw-bold">{error}</div>}

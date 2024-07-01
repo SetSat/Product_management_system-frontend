@@ -1,37 +1,41 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { tokenStatus, logout } from '../Redux/authSlice';
+import {jwtDecode} from "jwt-decode";
+import { useNavigate } from 'react-router-dom';
+import { Menu, Button } from 'antd';
+import './Navbar.css';
 
 export default function Navbar(props) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const tokenFromRedux = useSelector(tokenStatus);
+
+  // Decode the token to get user information
+  const token = jwtDecode(tokenFromRedux);
+  const userName = token.user.name;
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/login');
+  };
+
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg bg-primary">
-        <div className="container-fluid">
-          <button 
-            className="navbar-toggler" 
-            type="button" 
-            data-bs-toggle="collapse" 
-            data-bs-target="#navbarSupportedContent" 
-            aria-controls="navbarSupportedContent" 
-            aria-expanded="false" 
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link active text-light fs-4" aria-current="page" href="/">
-                  Products
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link active text-light fs-4" aria-current="page" href="/about">
-                  About
-                </a>
-              </li>
-            </ul>
-          </div>
+    <div className="navbar-container">
+      <Menu mode="horizontal" theme="light" className="glassy-navbar">
+        <Menu.Item key="products">
+          <a href="/" className="nav-link">Products</a>
+        </Menu.Item>
+        <Menu.Item key="about">
+          <a href="/about" className="nav-link">About</a>
+        </Menu.Item>
+        <div className="navbar-right">
+          <span className="user-name">{userName}</span>
+          <Button type="primary" danger onClick={handleLogout}>
+            Logout
+          </Button>
         </div>
-      </nav>
+      </Menu>
     </div>
   );
 }

@@ -1,0 +1,22 @@
+ 
+.signup-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;  
+}
+
+.signup-card {
+  width: 400px;
+  padding: 20px;
+  margin: auto;
+  background-color: #fff;  
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);  
+}
+
+@media screen and (max-width: 480px) {
+  .signup-card {
+    width: 90%;
+  }
+}

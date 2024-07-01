@@ -11,22 +11,35 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
+import LoginPage from './components/LoginPage';
+import SignUpPage from './components/SignUpPage';
+import { useSelector } from 'react-redux';
+import { tokenStatus } from './Redux/authSlice';
 
 
 
 
 function App() {
+  const isLoggedin = useSelector(tokenStatus)
   return (
     <div className="App">
-      <Navbar title="Product Details" about="About"></Navbar>
-
       <Router>
+      {isLoggedin && (<Navbar title="Product Details" about="About"></Navbar>)}
+
+      
         <Routes>
-          
-          <Route path="/" element={<Products />} />
-          <Route path="/insertproduct" element={<InsertProduct />} />
-          <Route path="/updateproduct/:id" element={<UpdateProduct />} />
-          <Route path="/about" element={<About />} />
+
+          {!isLoggedin && (<Route path='/login' element={<LoginPage></LoginPage>}></Route>)}
+          {!isLoggedin && (<Route path='/signup' element={<SignUpPage></SignUpPage>}></Route>)}
+
+          {isLoggedin && (<Route path="/" element={<Products />} />)}
+
+          {isLoggedin && (<Route path="/insertproduct" element={<InsertProduct />} />)}
+          {isLoggedin && (<Route path="/updateproduct/:id" element={<UpdateProduct />} />)}
+          {isLoggedin && (<Route path="/about" element={<About />} />)}
+
+
+
 
         </Routes>
 

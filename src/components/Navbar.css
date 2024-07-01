@@ -1,0 +1,38 @@
+.navbar-container {
+    background-color: rgb(102, 237, 102); 
+    width: 100%;
+    backdrop-filter: blur(10px);
+    
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .glassy-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color:rgb(104, 232, 206) ;
+  }
+  
+  .nav-link {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .nav-link:hover {
+    color: rgba(0, 0, 0, 1);
+  }
+  
+  .navbar-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-name {
+    margin-right: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
