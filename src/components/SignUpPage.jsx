@@ -31,7 +31,7 @@ const SignUpPage = () => {
       if (response.status === 200) {
         console.log(response.data.token);
         dispatch(login(response.data.token));
-        navigate("/");
+        navigate("/product");
         message.success("Signup successful");
         setName("");
         setEmail("");
@@ -54,7 +54,7 @@ const SignUpPage = () => {
     <div className="signup-page-container">
       <Card className="signup-card">
         <Space direction="vertical" size="middle" style={{ width: "100%", textAlign: "center" }}>
-          <Title level={2} style={{ color: "#fff" }}>
+          <Title level={2} >
             Sign Up
           </Title>
           <Form onFinish={handleSignUp} form={form} layout="vertical">
@@ -113,7 +113,7 @@ const SignUpPage = () => {
           </Form>
           <Button
             type="link"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/")}
             style={{ color: "#4FFBDF" }}
           >
             Already have an account?{" "}

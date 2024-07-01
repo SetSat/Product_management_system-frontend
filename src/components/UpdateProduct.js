@@ -81,7 +81,7 @@ export default function InsertProduct() {
 
             if (response.status === 201) {
                 alert("Data Updated");
-                navigate('/');
+                navigate('/product');
             }
             else {
                 setError("Something went wrong. Please try again.");
@@ -110,7 +110,7 @@ export default function InsertProduct() {
                 <input type="number" onChange={setBarcode} value={productBarcode} maxLength={12} className="form-control fs-5" id="product_barcode" placeholder="Enter Product Barcode" required />
             </div>
             <div className='d-flex justify-content-center col-lg-6 col-md-6'>
-                <NavLink to="/" style={{backgroundColor:"#68E8CE"}}  className='btn  me-5 fs-4'>Cancel</NavLink>
+                <NavLink to="/product" style={{backgroundColor:"#68E8CE"}}  className='btn  me-5 fs-4'>Cancel</NavLink>
                 <button type="submit" onClick={updateProduct} style={{backgroundColor:"#68E8CE"}} className="btn fs-4" disabled={loading}>{loading ? 'Updating...' : 'Update'}</button>
             </div>
             <div className="col text-center col-lg-6 ">

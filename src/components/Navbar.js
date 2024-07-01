@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { tokenStatus, logout } from '../Redux/authSlice';
-import {jwtDecode} from "jwt-decode";
-import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
+import { Link, useNavigate } from 'react-router-dom';
 import { Menu, Button } from 'antd';
 import './Navbar.css';
 
@@ -17,17 +17,21 @@ export default function Navbar(props) {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/login');
+    navigate('/');
   };
 
   return (
     <div className="navbar-container">
       <Menu mode="horizontal" theme="light" className="glassy-navbar">
         <Menu.Item key="products">
-          <a href="/" className="nav-link">Products</a>
+          <Link to="/product" className="nav-link">
+            Products
+          </Link>
         </Menu.Item>
         <Menu.Item key="about">
-          <a href="/about" className="nav-link">About</a>
+          <Link to="/about" className="nav-link">
+            About
+          </Link>
         </Menu.Item>
         <div className="navbar-right">
           <span className="user-name">{userName}</span>

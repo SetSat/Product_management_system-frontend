@@ -28,7 +28,7 @@ const LoginPage = () => {
         dispatch(login(response.data.token));
         console.log(response.data.token);
         message.success("Login successful");
-        navigate("/");
+        navigate("/product");
       } else {
         throw new Error("Login failed");
       }

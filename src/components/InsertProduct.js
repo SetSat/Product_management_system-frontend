@@ -53,7 +53,7 @@ export default function InsertProduct() {
                 setProductName("");
                 setProductPrice(0);
                 setProductBarcode(0);
-                navigate('/');
+                navigate('/product');
             }
             else if (res.status === 422) {
                 alert("Product is already added with that barcode.");
@@ -86,7 +86,7 @@ export default function InsertProduct() {
                 <input type="number" onChange={setBarcode} value={productBarcode} maxLength={12} className="form-control fs-5" id="product_barcode" placeholder="Enter Product Barcode" required />
             </div>
             <div className='d-flex justify-content-center col-lg-6 col-md-6'>
-                <NavLink to="/" style = {{backgroundColor:"#68E8CE"}} className='btn  me-5 fs-4'>Cancel</NavLink>
+                <NavLink to="/product" style = {{backgroundColor:"#68E8CE"}} className='btn  me-5 fs-4'>Cancel</NavLink>
                 <button type="submit" onClick={addProduct}  style = {{backgroundColor:"#68E8CE"}} className="btn  fs-4" disabled={loading}>{loading ? 'Inserting...' : 'Insert'}</button>
             </div>
             <div className="col text-center col-lg-6">

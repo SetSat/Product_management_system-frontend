@@ -29,10 +29,10 @@ function App() {
       
         <Routes>
 
-          {!isLoggedin && (<Route path='/login' element={<LoginPage></LoginPage>}></Route>)}
+          {!isLoggedin && (<Route path='/' element={<LoginPage></LoginPage>}></Route>)}
           {!isLoggedin && (<Route path='/signup' element={<SignUpPage></SignUpPage>}></Route>)}
 
-          {isLoggedin && (<Route path="/" element={<Products />} />)}
+          {isLoggedin && (<Route path="/product" element={<Products />} />)}
 
           {isLoggedin && (<Route path="/insertproduct" element={<InsertProduct />} />)}
           {isLoggedin && (<Route path="/updateproduct/:id" element={<UpdateProduct />} />)}
